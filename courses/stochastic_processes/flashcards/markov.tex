@@ -1,0 +1,205 @@
+% layout in Anki:
+\documentclass[11pt]{article}
+\usepackage[a4paper]{geometry}
+\geometry{paperwidth=.5\paperwidth,paperheight=100in,left=2em,right=2em,bottom=1em,top=2em}
+\pagestyle{empty}
+\setlength{\parindent}{0in}
+
+% hyphenation:
+\usepackage[ngerman]{babel}
+
+% encoding:
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+
+% packages:
+\usepackage{amsmath,amsfonts}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Following part of header NOT to be copied into
+%            the note options in Anki.
+%          ! Anki will throw an errow !
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  pdf layout:
+%
+\geometry{paperheight=74.25mm}
+\usepackage{pgfpages}
+\pagestyle{empty}
+\pgfpagesuselayout{8 on 1}[a4paper,border shrink=0cm]
+\makeatletter
+\@tempcnta=1\relax
+\loop\ifnum\@tempcnta<9\relax
+\pgf@pset{\the\@tempcnta}{bordercode}{\pgfusepath{stroke}}
+\advance\@tempcnta by 1\relax
+\repeat
+\makeatother
+%
+%  notes, fields, tags:
+%
+\newcommand{\xfield}[1]{
+        #1\par
+        \vfill
+        {\tiny\texttt{\parbox[t]{\textwidth}{\localtag\\\globaltag\hfill\uuid}}}
+        \newpage}
+\newenvironment{field}{}{\newpage}
+\newif\ifnote
+\newenvironment{note}{\notetrue}{\notefalse}
+\newcommand{\localtag}{}
+\newcommand{\globaltag}{}
+\newcommand{\uuid}{}
+\newcommand{\tags}[1]{
+    \ifnote
+        \renewcommand{\localtag}{#1}
+    \else
+        \renewcommand{\globaltag}{#1}
+    \fi
+    }
+\newcommand{\xplain}[1]{\renewcommand{\uuid}{#1}}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The following line again needs to be copied
+% into Anki:
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{note}
+   \begin{field}
+       Definition of Renewal Processes
+   \end{field}
+   \begin{field}
+     A renewal process is a counting process where inter-arrival
+     times, \(\tau_j, j = 1,2,\ldots\) between consecutive events are
+     independent identically distributed with cumulative distribution
+     function \(F_\tau(\cdot)\), \(\mu := \mathbb{E}(\tau)\),
+     \(\tau > 0\) with probability \(1\).
+   \end{field}
+\end{note}
+%
+\begin{note}
+  \begin{field}
+    Monotone convergence Theorem
+  \end{field}
+  \begin{field}
+    Let \(X_n, n = 1,2,\dots\) be a sequence of random variables such
+    that \(\forall n \geq 1, 0 \leq X_n \leq X_{n+1}\) with
+    probability \(1\). Then
+    \(\lim_{t \to +\infty} \mathbb{E}(X_n) = \mathbb{E}(\lim_{n \to
+      +\infty} X_n)\).
+  \end{field}
+\end{note}
+%
+\begin{note}
+  \begin{field}
+    Properties of Renewal Processes \(\{N_t, t \geq 0\}\)
+  \end{field}
+  \begin{field}
+    \begin{enumerate}
+    \item For any fixed finite \(t\), \(P(N_t = +\infty) = 0\).
+    \item \(\lim_{t \to +\infty} N_t = +\infty\) with probability \(1\).
+    \item \(\lim_{t \to +\infty} \mathbb{E}(N_t) = +\infty\).
+    \end{enumerate}
+  \end{field}
+\end{note}
+%
+\begin{note}
+  \begin{field}
+    Strong law of renewal processes
+  \end{field}
+  \begin{field}
+    \(\lim_{t \to +\infty} \frac{N_t}{t} = \frac{1}{\mu}\) with
+    probability \(1\).
+  \end{field}
+\end{note}
+%
+\begin{note}
+  \begin{field}
+    The distribution of a renewal process, \(\{N_t, t \geq 0\}\) with
+    inter-arrival times \(\tau_n, n = 1,2,\ldots\), (the distribution
+    of \(\tau_n\) is given: \(F_\tau(\cdot)\)
+  \end{field}
+  \begin{field}
+    \(P(N_t = n) = F_n(t) - F_{n+1}(t)\), where
+    \(F_n = F_\tau * F_\tau \cdots * F_\tau\)
+  \end{field}
+\end{note}
+%
+\begin{note}
+  \begin{field}
+    Central limit theorem for renewal processes
+  \end{field}
+  \begin{field}
+    Assume that the inter-arrival times, \(\tau_j\) for a renewal
+    process, \(\{N_t, t \geq 0\}\) have finite variance
+    \(\sigma^2\). Then
+    \(\xi_t = \frac{N_t - \frac{t}{\mu}}{\sigma \sqrt{t / \mu^3}} \to
+    \mathcal{N}(0,1)\) in distribution when \(t \to +\infty\).
+  \end{field}
+\end{note}
+%
+\begin{note}
+  \begin{field}
+    The renewal equation
+  \end{field}
+  \begin{field}
+    \(m(t) = F_\tau(t) + \int_0^t m(t-x) F(dx)\)
+  \end{field}
+\end{note}
+%
+\begin{note}
+  \begin{field}
+    The elementary renewal theorem (\(\tau\) is cont.)
+  \end{field}
+  \begin{field}
+    \(\lim_{t \to +\infty} \frac{\mathbb{E}(N_t)}{t} =
+    \frac{1}{\mathbb{E}(\tau)}\)
+  \end{field}
+\end{note}
+%
+\begin{note}
+  \begin{field}
+    Blackwell's Theorem
+  \end{field}
+  \begin{field}
+    If \(\{N_t, t = 0,1,\ldots\}\) has an inter-arrival distribution
+    that is no-lattice, then \(\forall \sigma > 0\),
+    \begin{align*}
+      \lim_{t \to +\infty} [ m(t+\sigma) - m(t) ] = \frac{\sigma}{\mu}
+      \\
+      \lim_{t \to +\infty} P(N_{t + \sigma} - N_t = 1) =
+      \frac{\sigma}{\mu} \\
+      \lim_{t \to +\infty} P(N_{t+\sigma} - N_t = 0) = 1 -
+      \frac{\sigma}{\mu} + o(\sigma) \\
+      \lim_{t \to +\infty} P(N_{t+\sigma} - N_t = 2) = o(\sigma)
+    \end{align*}
+    If \(\{N_t, t = 0,1,\ldots\}\) has an inter-arrival distribution
+    that is lattice with span \(d\), then:
+    \begin{align*}
+      \lim_{t \to +\infty} [ m(nd) - m((n-1)d)] = \frac{nd}{\mu}
+    \end{align*}
+  \end{field}
+\end{note}
+%
+\begin{note}
+  \begin{field}
+    Definition of Markov Chain, how to describe a Markov Chain
+  \end{field}
+  \begin{field}
+    A Markov chain is a Markov process \(\{X_t, t \in T\}\) with
+    finite or countably infinite state space. To characterize a Markov
+    chain statistically, we need the following
+    \begin{align*}
+      \{\pi_s(x) : \forall x \in S, \pi_0(x) = p(X_0 = 0)\} \\
+      \{P_t(x, y) = p(X_{t+1} = y | X_t = x), x, y \in S, t \in T\}
+    \end{align*}
+    where \(S\) is the state of space of the Markov chain.
+  \end{field}
+\end{note}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

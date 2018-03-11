@@ -1,0 +1,118 @@
+% -*- coding:utf-8 -*-
+% LATEX PREAMBLE --- needs to be imported manually
+\documentclass[11pt]{article}
+\special{papersize=3in,5in}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb,amsmath}
+\pagestyle{empty}
+\setlength{\parindent}{0in}
+\newcommand{\detail}[1]{{\scriptsize(#1)\par}~}
+\newcommand{\refs}[1]{{\scriptsize\textit{Refs: }#1\par}\hfill.}
+\newcommand*{\abs}[1]{\left\vert#1\right\vert}
+
+\newcommand{\expect}[1]{\mathbf{E}(#1)}
+\newcommand{\var}[1]{\mathbf{Var}(#1)}
+
+%%% commands that do not need to imported into Anki:
+\usepackage{mdframed}
+\newcommand*{\tags}[1]{\paragraph{tags: }#1\bigskip}
+\newcommand*{\xfield}[1]{\begin{mdframed}\centering #1\end{mdframed}\bigskip}
+\newenvironment{field}{}{}
+\newcommand*{\xplain}[1]{\begin{mdframed}\texttt{#1}\end{mdframed}\bigskip}
+\newenvironment{plain}{\ttfamily}{\par}
+\newenvironment{note}{}{}
+% END OF THE PREAMBLE
+\begin{document}
+%
+\tags{renewal-processes}
+\begin{note}
+  \xfield{Definition of renewal processes}
+  \begin{field}
+    A renewal process is a counting process where inter-arrival times,
+    \(\tau_j, j = 1,2,\ldots\) between consecutive events are
+    i.i.d. with cumulative distribution function \(F_\tau(\cdot)\),
+    \(\mu := \expect{\tau}\), \(\tau > 0\) with probability \(1\).
+  \end{field}
+\end{note}
+%
+\begin{note}
+  \xfield{State and prove three basic properties of renewal processes}
+  \begin{field}
+    \begin{enumerate}
+    \item For any fixed finite \(t\), \(P(N_t = +\infty) = 0\).
+    \item \(\lim_{t \to +\infty} N_t = +\infty\) with probability \(1\).
+    \item \(\lim_{t \to +\infty} \expect{N_t} = +\infty\).
+    \end{enumerate}
+  \end{field}
+\end{note}
+%
+\begin{note}
+  \xfield{State and prove the strong law of renewal processes}
+  \begin{field}
+    \(\lim_{t \to +\infty} \frac{N_t}{t} = \frac{1}{\mu}\) with probability \(1\).
+  \end{field}
+\end{note}
+%
+\begin{note}
+  \xfield{Solve for the distribution of renewal process with \(\{N_t, t \geq 0\}\) with
+    inter-arrival times \(\tau_n, n = 1,2,\ldots\)}
+  \begin{field}
+    \(P(N_t = n) = F_n(t) - F_{n+1}(t)\), where
+    \(F_n = F_\tau * F_\tau \cdots * F_\tau\)
+  \end{field}
+\end{note}
+%
+\begin{note}
+  \xfield{State and prove central limit theorem for renewal processes}
+  \begin{field}
+    Assume that the inter-arrival times, \(\tau_j\) for a renewal
+    process, \(\{N_t, t \geq 0\}\) have finite variance
+    \(\sigma^2\). Then
+    \(\xi_t = \frac{N_t - \frac{t}{\mu}}{\sigma \sqrt{t / \mu^3}} \to
+    \mathcal{N}(0,1)\) in distribution when \(t \to +\infty\).
+  \end{field}
+\end{note}
+%
+\begin{note}
+  \xfield{State and prove the renewal equation}
+  \begin{field}
+    \(m(t) = F_\tau(t) + \int_0^t m(t-x) F(dx)\)
+  \end{field}
+\end{note}
+%
+\begin{note}
+  \xfield{State and prove the elementary renewal theorem (\(\tau\) is cont.)}
+  \begin{field}
+    \(\lim_{t \to +\infty} \frac{\expect{N_t}}{t} = \frac{1}{\expect{\tau}}\)
+  \end{field}
+\end{note}
+%
+\begin{note}
+  \xfield{State and prove Blackwell's Theorem}
+  \begin{field}
+    If \(\{N_t, t = 0,1,\ldots\}\) has an inter-arrival distribution
+    that is no-lattice, then \(\forall \sigma > 0\),
+    \begin{align*}
+      \lim_{t \to +\infty} [ m(t+\sigma) - m(t) ]
+      & = \frac{\sigma}{\mu} \\
+      \lim_{t \to +\infty} P(N_{t + \sigma} - N_t = 1)
+      & = \frac{\sigma}{\mu} \\
+      \lim_{t \to +\infty} P(N_{t+\sigma} - N_t = 0)
+      & = 1 - \frac{\sigma}{\mu} + o(\sigma) \\
+      \lim_{t \to +\infty} P(N_{t+\sigma} - N_t = 2)
+      & = o(\sigma)
+    \end{align*}
+    If \(\{N_t, t = 0,1,\ldots\}\) has an inter-arrival distribution
+    that is lattice with span \(d\), then:
+    \begin{align*}
+      \lim_{t \to +\infty} [ m(nd) - m((n-1)d)] = \frac{nd}{\mu}
+    \end{align*}
+  \end{field}
+\end{note}
+%
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
