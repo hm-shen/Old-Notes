@@ -113,6 +113,64 @@
   \end{field}
 \end{note}
 %
+\begin{note}
+  \xfield{Definition of renewal reward processes and fundamental assumption}
+  \begin{field}
+    Let \(\{N_t\}, t \geq 0\) be a renewal process, \(\{R(t), t
+    \geq0\}\) be a reward process associated with \(\{N_t\}\). We
+    assume \(R_t\) at a give time \(t\) depends only on the
+    inter-renewal interval containing \(t\), i.e.,
+    \begin{align*}
+      R_t = R(Z_t, \tau_t)
+    \end{align*}
+    where \(Z_t := t - T_{N_t}, \tau_t := T_{N_t + 1} - T_{N_t}\).
+  \end{field}
+\end{note}
+%
+\begin{note}
+  \xfield{Determine \(\displaystyle \lim_{t \to +\infty} \frac{1}{t} \int_0^t R_s
+    ds\)}
+  \begin{field}
+    \begin{align*}
+      \lim_{t \to +\infty} \frac{1}{t} \int_0^t R_s ds = \frac{\expect{R_n}}{\mu}
+    \end{align*}
+    where \(\mu := \expect{\tau}, R_n = \displaystyle \int_{T_{n-1}}^{T_n} R(Z_t,
+    \tau_n) d \tau =  \int_0^\tau R(s, \tau_n) ds\)
+  \end{field}
+\end{note}
+%
+\begin{note}
+  \xfield{Prove the key renewal reward theorem when \(\{N_t\}\) is non-arithmetic}
+  \begin{field}
+    Let \(R(\tau, Z)\) be a renewal reward function associated with a
+    non-arithmetic renewal process \(\{N_t, t \geq 0\}\); let \(r(z) =
+    \int_{\tau = z}^{+\infty} R(\tau, z) d f(\tau)\) be a directly
+    Riemann integrable function and let \(m(t) :=
+    \expect{N_t}\). Assume \(\tau > 0\) with probability \(1\). We
+    have the following:
+    \begin{align*}
+      \displaystyle
+      \lim_{t \to +\infty} \expect{R_t} = \lim_{t \to +\infty}
+      \int_0^t r(z) d( m(t-z) ) = \frac{1}{\mu} \int_0^{+\infty} r(z) dz
+    \end{align*}
+  \end{field}
+
+\end{note}
+%
+\begin{note}
+  \xfield{Determine \(\displaystyle \lim_{t \to +\infty}
+    \expect{R_t}\)}
+  \begin{field}
+    By the key renewal reward theorem when \(\{N_t\}\) is
+    non-arithmetic, we have the following:
+    \begin{align*}
+      \displaystyle
+      \lim_{t \to +\infty} \expect{R_t} = \frac{\expect{R_n}}{\mu}
+    \end{align*}
+    where \(\mu := \expect{\tau}\).
+  \end{field}
+
+\end{note}
 \end{document}
 
 %%% Local Variables:
