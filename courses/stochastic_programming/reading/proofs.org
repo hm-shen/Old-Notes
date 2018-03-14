@@ -1,0 +1,9 @@
+#+TITLE: Supplementary Proofs for Stochastic Programming
+#+AUTHOR: Haoming Shen
+#+STARTUP: indent
+#+OPTIONS: tex:dvipng
+#+LATEX_HEADER: \input{../../../headers/configs.tex}
+
+\clearpage
+
+* CHAPTER II: LINEAR TWO-STAGE PROBLEMS
