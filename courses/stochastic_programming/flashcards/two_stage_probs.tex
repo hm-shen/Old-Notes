@@ -12,6 +12,7 @@
 
 \newcommand{\expect}[1]{\mathbf{E}(#1)}
 \newcommand{\var}[1]{\mathbf{Var}(#1)}
+\newcommand{\reals}{\mathbf{R}}
 
 %%% commands that do not need to imported into Anki:
 \usepackage{mdframed}
@@ -24,9 +25,65 @@
 % END OF THE PREAMBLE
 \begin{document}
 %
-\tags{two_stage_probs}
+\tags{linear-two-stage-problems}
+\begin{note}
+  \xfield{Standard linear two-stage problems and dual of the second-stage}
+  \begin{field}
+    A standard linear two-stage problem has the following form:
+    \begin{align*}
+      \min_{x \in \reals^n} ~ & c^\top x + \expect{ Q(x, \xi) } \\
+      s.t. ~ & Ax = b \\
+      & x \succeq 0
+    \end{align*}
+    where \(Q(x, \xi)\) is the optimal value of the second-stage
+    problem:
+    \begin{align*}
+      \min_{y \in \reals^m} ~ & q^\top y \\
+      s.t. ~ & Wy = h - Tx \\
+      & y \succeq 0
+    \end{align*}
+    \(\xi := (q, h, T, W)\) represents the data of the second-stage
+    problem. Expectation is taken w.r.t. the distribution of \(\xi\).
 
+    The dual of the second-stage linear programming is shown below:
+    \begin{align*}
+      \max_{\pi} ~ & \pi^\top (h - Tx) \\
+      s.t. ~ & W^\top \pi \preceq q
+    \end{align*}
+  \end{field}
+\end{note}
 %
+\begin{note}
+  \xfield{State and prove the properties of \(Q(\cdot, \xi)\)}
+  \begin{field}
+    Properties are listed below. Please refer
+    \textit{Lectures on Stochastic Programming} for proofs.
+    \begin{enumerate}
+    \item For any given \(\xi\), the function \(Q(\cdot, \xi)\) is
+      convex. Moreover, if the set \(\{\pi : W^\top \pi \preceq\}\) is
+      nonempty and second stage problem is feasible, then the function
+      \(Q(\cdot, \xi)\) is polyhedral.
+    \item Suppose that for given \(x = x_0\) and \(\xi \in \Xi\), the
+      value \(Q(x_0, \xi)\) is finite. Then \(Q(\cdot, \xi)\) is
+      subdifferentiable at \(x_0\) and
+      \begin{align*}
+        \partial Q(x_0, \xi) = -T^\top \mathcal{D}(x_0, \xi)
+      \end{align*}
+      where \(\mathcal{D}(x,\xi) := \text{arg } \max_{\pi \in \Pi(q)}
+      \pi^\top (h - Tx)\) is the set of optimal solutions of the dual
+      problem.
+    \end{enumerate}
+  \end{field}
+\end{note}
+%
+\begin{note}
+  \xfield{Definitions and conditions under which the two-stage problem
+    has fixed recourse, complete recourse, relatively complete
+    recourse, simple recourse}
+  \begin{field}
+    see textbook.
+  \end{field}
+\end{note}
 \end{document}
 
 

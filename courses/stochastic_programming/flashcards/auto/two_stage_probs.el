@@ -21,7 +21,8 @@
     '("expect" 1)
     '("abs" 1)
     '("refs" 1)
-    '("detail" 1))
+    '("detail" 1)
+    "reals")
    (LaTeX-add-environments
     "field"
     "plain"
