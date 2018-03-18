@@ -1,0 +1,41 @@
+% -*- coding:utf-8 -*-
+% LATEX PREAMBLE --- needs to be imported manually
+\documentclass[11pt]{article}
+\special{papersize=3in,5in}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb,amsmath}
+\pagestyle{empty}
+\setlength{\parindent}{0in}
+\newcommand{\detail}[1]{{\scriptsize(#1)\par}~}
+\newcommand{\refs}[1]{{\scriptsize\textit{Refs: }#1\par}\hfill.}
+\newcommand*{\abs}[1]{\left\vert#1\right\vert}
+
+\newcommand{\expect}[1]{\mathbf{E}(#1)}
+\newcommand{\var}[1]{\mathbf{Var}(#1)}
+\newcommand{\reals}{\mathbf{R}}
+
+%%% commands that do not need to imported into Anki:
+\usepackage{mdframed}
+\newcommand*{\tags}[1]{\paragraph{tags: }#1\bigskip}
+\newcommand*{\xfield}[1]{\begin{mdframed}\centering #1\end{mdframed}\bigskip}
+\newenvironment{field}{}{}
+\newcommand*{\xplain}[1]{\begin{mdframed}\texttt{#1}\end{mdframed}\bigskip}
+\newenvironment{plain}{\ttfamily}{\par}
+\newenvironment{note}{}{}
+% END OF THE PREAMBLE
+\begin{document}
+\begin{note}
+  \xfield{Definition of Semi-continuity}
+  \begin{field}
+    Roughly speaking, the function values for arguments near \(x_0\)
+    are either close to \(f(x_0)\) or less than \(f(x_0)\).
+    We say that \(f\) is upper semi-continuous at \(x_0\) if
+    \(\forall \epsilon > 0\) there exists a neighborhood \(U\) of
+    \(x_0\) such that \(f(x) \leq f(x_0) + \epsilon\) for all
+    \(x \in U\) when \(f(x_0) > -\infty\) and \(f(x)\) tends to
+    \(- \infty\) as \(x\) tends towards \(x_0\) when
+    \(f(x_0) = -\infty\).
+  \end{field}
+\end{note}
+
+\end{document}
