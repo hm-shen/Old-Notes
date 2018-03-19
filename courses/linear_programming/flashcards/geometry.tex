@@ -1,0 +1,91 @@
+% -*- coding:utf-8 -*-
+% LATEX PREAMBLE --- needs to be imported manually
+\documentclass[11pt]{article}
+\special{papersize=3in,5in}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb,amsmath}
+\pagestyle{empty}
+\setlength{\parindent}{0in}
+\newcommand{\detail}[1]{{\scriptsize(#1)\par}~}
+\newcommand{\refs}[1]{{\scriptsize\textit{Refs: }#1\par}\hfill.}
+\newcommand*{\abs}[1]{\left\vert#1\right\vert}
+
+\newcommand{\expect}[1]{\mathbf{E}(#1)}
+\newcommand{\var}[1]{\mathbf{Var}(#1)}
+\newcommand{\reals}{\mathbf{R}}
+
+%%% commands that do not need to imported into Anki:
+\usepackage{mdframed}
+\newcommand*{\tags}[1]{\paragraph{tags: }#1\bigskip}
+\newcommand*{\xfield}[1]{\begin{mdframed}\centering #1\end{mdframed}\bigskip}
+\newenvironment{field}{}{}
+\newcommand*{\xplain}[1]{\begin{mdframed}\texttt{#1}\end{mdframed}\bigskip}
+\newenvironment{plain}{\ttfamily}{\par}
+\newenvironment{note}{}{}
+% END OF THE PREAMBLE
+\begin{document}
+\tags{lp-geometry}
+\begin{note}
+  \xfield{Definition of extreme points and vertices of a polyhedron}
+  \begin{field}
+    Let \(P \subset \reals^n\) be a polyhedron. A vector \(x \in P\)
+    is an extreme point of \(P\) if we cannot find two vectors
+    \(y,z \in P\) both different from \(x\), and a scalar
+    \(\lambda \in [0,1]\), such that
+    \(x = \lambda y + (1 - \lambda) z\).
+    \\
+
+    A vector \(x \in P\) is a vertex of \(P\) if there exists some
+    \(c \in \reals^n\) such that \(c^\top x < c^\top y\) for all
+    \(y \in P, y \not = x\).
+  \end{field}
+\end{note}
+%
+\begin{note}
+  \xfield{Defintion of basic (feasible) solutions}
+  \begin{field}
+    Consider a polyhedron \(P \in \reals^n\) defined by linear
+    equality and inequality constraints, and let
+    \(\bar{x} \in \reals^n\). \(\bar{x}\) is a basic solution if
+    \((1)\) All equality constraints are active (i.e., satisfied);
+    \((2)\) Among the constraints that are active at \(\bar{x}\),
+    there exist \(n\) that are linearly independent.
+    \\
+
+    If \(\bar{x}\) is a basic solution that satisfies all of the
+    constraints, we say it is a basic feasible solution.
+    \\
+
+    Also note that if the number of constraints used to define \(P \in
+    \reals^n\), \(m\) is less than \(n\), then there is no basic
+    solutions or basic feasible solutions.
+  \end{field}
+\end{note}
+%
+\begin{note}
+  \xfield{State and prove the relation between extreme points,
+    vertices and basic solutions}
+  \begin{field}
+    Let \(P\) be a nonempty polyhedron and let \(x \in P\). Then,
+    \(x\) being a vertex is equivalent to \(x\) being an extreme point
+    and to being a basic feasible solution.
+
+    Corollary: Given a finite number of linear inequality constraints,
+    there can only be a finite number of basic or basic feasible
+    solutions.
+  \end{field}
+\end{note}
+%
+\begin{note}
+  \xfield{Definition of subspaces}
+  \begin{field}
+    We call \(\varnothing \not = S \subseteq \reals^n\) a subspace of
+    \(\reals^n\) if \(\forall x, y \in S, \alpha, \beta \in \reals\),
+    \(\alpha x + \beta y \in S\). (Must contain \(0\)!)
+  \end{field}
+\end{note}
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
