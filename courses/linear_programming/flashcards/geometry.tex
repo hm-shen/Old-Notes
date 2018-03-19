@@ -42,6 +42,27 @@
 \end{note}
 %
 \begin{note}
+  \xfield{Three equivalent statement w.r.t. the set of indices of
+    constraints active at \(x^* \in \reals^n\)}
+  \begin{field}
+    Let \(x^*\) be an element of \(\reals^n\) and let \(I = \{ i ~|~
+    a^\top_i x^* = b_i\}\) be the set of indices of constraints that
+    are active at \(x^*\). Then the following are equivalent:
+    \begin{enumerate}
+    \item There exist \(n\) vectors in the set \(\{a_i ~|~ i \in
+      I\}\), which are linearly independent.
+    \item The span of the vectors \(a_i, i \in I\) is all of
+      \(\reals^n\), i.e., every elements of \(\reals^n\) can be
+      expressed as a linear combination of the vectors
+      \(a_i, i \in I\).
+    \item The system of equations \(a^\top_i x = b_i, i \in I\) has a
+      unique solution.
+    \end{enumerate}
+  \end{field}
+\end{note}
+
+%
+\begin{note}
   \xfield{Defintion of basic (feasible) solutions}
   \begin{field}
     Consider a polyhedron \(P \in \reals^n\) defined by linear
@@ -76,6 +97,96 @@
   \end{field}
 \end{note}
 %
+\begin{note}
+  \xfield{Given \(\{x \in \reals^n ~|~ Ax = b, x \succeq 0\}\), state
+    and prove how would you find basic solutions.}
+  \begin{field}
+    Consider the constraints \(Ax = b\) and \(x \succeq 0\) and assume
+    that \(A \in \reals^{m \times n}\) has linear independent rows. A
+    vector \(x \in \reals^n\) is a basic solution iff we have \(Ax =
+    b\) and there exists indices \(B(1), \ldots, B(m)\) such that:
+    \begin{enumerate}
+    \item The columns \(A_{B(1)}, \ldots, A_{B(m)}\) are linearly
+      independent;
+    \item If \(i \not = B(1), \ldots, B(m)\) then \(x_i = 0\).
+    \end{enumerate}
+    Note that there are actually \(m + n\) constraints on \(x\) in
+    total. Method above gives a way to find a way to identify
+    corners. Also it is easy to judge whether the basic solution is
+    feasible or not since we only need to check whether \(x_B =
+    A^{-1}_B b \succeq 0\) or not.
+  \end{field}
+\end{note}
+%
+\begin{note}
+  \xfield{Definition of adjacent basic solutions}
+  \begin{field}
+    Two distinct basic solutions are said to be adjacent if there are
+    \(n-1\) linearly independent constraints that are active at both
+    of them. For standard form problems, we also say two bases are
+    adjacent if they share all but one basic column.
+  \end{field}
+\end{note}
+%
+\begin{note}
+  \xfield{Why do we always assume \(A\) has full row rank?}
+  \begin{field}
+    Let \(P = \{x ~|~ Ax = b, x \succeq 0\}\) be a nonempty
+    polyhedron, where \(A\) is a matrix of dimensions \(m \times n\),
+    with rows \(a^\top_1, \ldots, a^\top_m\). Suppose \(\text{rank}(A) = k <
+    m\) and that the rows \(a^\top_{i_1}, \ldots, a^\top_{i_k}\) are
+    linearly independent. Consider the polyhedron
+    \begin{align*}
+      Q = \{ x ~|~ a^\top_{i_1} x = b_{i_1}, \ldots, a^\top_{i_k} x =
+      b_{i_k}, x \succeq 0\}
+    \end{align*}
+    Then \(Q = P\).
+  \end{field}
+\end{note}
+%
+\begin{note}
+  \xfield{Definition of degeneracy and degeneracy in standard form polyhedra}
+  \begin{field}
+    A basic solution \(x \in \reals^n\) is said to be degenerate if
+    more than \(n\) of the constraints are active at \(x\).
+    \\
+
+    Consider the standard form polyhedron \(P = \{x \in \reals^n ~|~
+    Ax = b, x \succeq 0\}\) and let \(x\) be a basic solution. Let
+    \(m\) be the number of rows of \(A\). The vectors \(x\) is
+    degenerate basic solution if more than \(n-m\) of the components
+    of are zero.
+  \end{field}
+\end{note}
+%
+\begin{note}
+  \xfield{Three equivalent statements on the existence of extreme
+    point and its corollary}
+  \begin{field}
+    Suppose that the polyhedron \(P = \{ x \in \reals^n ~|~ a^\top_i x
+    \geq b_i, i = 1,2,\ldots,m\}\) is nonempty. Then the following are
+    equivalent:
+    \begin{enumerate}
+    \item The polyhedron \(P\) has at least one extreme point.
+    \item The polyhedron \(P\) does not contain a line.
+    \item There exist \(n\) vetors out of the family \(a_1, \ldots,
+      a_m\) which are linearly independent.
+    \end{enumerate}
+    Corollary: Every nonempty bounded polyhedron and every nonempty
+    polyhedron in standard form has at least one basic feasible
+    solution.
+  \end{field}
+\end{note}
+%
+\begin{note}
+  \xfield{State the optimality of extreme points}
+  \begin{field}
+    Consider the linear programming problem of minimizing \(c^\top x\)
+    over a polyhedron \(P\). Suppose that \(P\) has at least one
+    extreme point. Then either the optimal cost is \(-\infty\) or
+    there exists an extreme point which is optimal.
+  \end{field}
+\end{note}
 \begin{note}
   \xfield{Definition of subspaces}
   \begin{field}
