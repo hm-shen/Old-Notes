@@ -1,0 +1,136 @@
+% -*- coding:utf-8 -*-
+% LATEX PREAMBLE --- needs to be imported manually
+\documentclass[11pt]{article}
+\special{papersize=3in,5in}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb,amsmath}
+\pagestyle{empty}
+\setlength{\parindent}{0in}
+\newcommand{\detail}[1]{{\scriptsize(#1)\par}~}
+\newcommand{\refs}[1]{{\scriptsize\textit{Refs: }#1\par}\hfill.}
+\newcommand*{\abs}[1]{\left\vert#1\right\vert}
+
+\newcommand{\expect}[1]{\mathbf{E}(#1)}
+\newcommand{\var}[1]{\mathbf{Var}(#1)}
+\newcommand{\reals}{\mathbf{R}}
+
+%%% commands that do not need to imported into Anki:
+\usepackage{mdframed}
+\newcommand*{\tags}[1]{\paragraph{tags: }#1\bigskip}
+\newcommand*{\xfield}[1]{\begin{mdframed}\centering #1\end{mdframed}\bigskip}
+\newenvironment{field}{}{}
+\newcommand*{\xplain}[1]{\begin{mdframed}\texttt{#1}\end{mdframed}\bigskip}
+\newenvironment{plain}{\ttfamily}{\par}
+\newenvironment{note}{}{}
+% END OF THE PREAMBLE
+\begin{document}
+\tags{lp-simplex}
+\begin{note}
+  \xfield{Standard form linear programming problem}
+  \begin{field}
+    The standard form linear programming problem has the following
+    form:
+    \begin{align*}
+      \min ~ & c^\top x \\
+      \text{s.t.} ~ & Ax = b \\
+      & x \succeq 0
+    \end{align*}
+    where \(A \in \reals^{m \times n}\) and \(\text{rank}(A) = m\);
+    let \(P\) denotes the corresponding feasible set.
+  \end{field}
+\end{note}
+%
+\begin{note}
+  \xfield{Definition of feasible direction and how does simplex
+    determine its feasible direction}
+  \begin{field}
+    Let \(x \in P\), a vector \(d \in \reals^n\) is said to be a
+    feasible direction at \(x\) if there exists a positive scalar
+    \(\theta\) for which \(x + \theta d \in P\).
+    \\
+
+    Simplex algorithm finds the optimal solution of a LP by searching
+    for the best extreme points in \(P\). Given a starting point,
+    i.e. a basic feasible solution, we have \(m\) linearly independent
+    basic constraints and \(n - m\) nonbasic constraints associated
+    with it. The \(j\)th feasible direction is determined by releasing
+    the \(j\)th nonbasic constraints among the \(n-m\) constraints in
+    total: the \(j\)th feasible solution is the \(1\)d null space of
+    \(m\) basic constraints and \(n-m-1\) nonbasic constraints.
+  \end{field}
+\end{note}
+%
+\begin{note}
+  \xfield{Derive primal simplex the \(j\)th feasible direction and
+    corresponding reduce cost}
+  \begin{field}
+    Given a current basic feasible solution (BFS), \(\begin{bmatrix} x_B \\
+      x_N \end{bmatrix}\), simplex does the following:
+    \begin{enumerate}
+    \item Current BFS satisfies:
+      \begin{align*}
+        \tilde{A} x :=
+        \begin{bmatrix} A_B & A_N \\ 0 & I_{n-m} \end{bmatrix}
+        \begin{bmatrix} x_B \\ x_N \end{bmatrix} =
+        \begin{bmatrix} b \\ 0 \end{bmatrix}
+      \end{align*}
+      Release the \(j\)th constraints, \(j \in \{m+1, \ldots, n\}\),
+      solve for the null space of the left \((n-1) \times n\) matrix,
+      \(\tilde{A}^j\) using equality \(\tilde{A}^j d = 0\), we have:
+      \begin{align*}
+        \tilde{A}^j d :=
+        \begin{bmatrix} A_B & A_N \\ 0 & I^j_{n-m} \end{bmatrix}
+        \begin{bmatrix} d_B \\ d_N \end{bmatrix} =
+        \begin{bmatrix} b \\ 0 \end{bmatrix}
+      \end{align*}
+      where \(I^j_{n-m}\) denotes the identity matrix without the
+      \(j\)th row. Evidently, the solution of \(d\) should satisfy:
+      \begin{align*}
+        A_B d_B + A_{N_j} d_{N_j} & = 0 \\
+        d_B & = - A_B^{-1} A_{N_j} d_{N_j} \\
+        d^j_N & = 0
+      \end{align*}
+      where \(A_{N_j}\) denotes the \(j\)th column of \(A_N\);
+      \(d_{N_j}\) denotes the \(j\)th entry of \(d_N\); \(d^j_N\)
+      denotes \(d_N\) with the \(j\)th entry excluded.
+    \item Compute the reduction in objective value along the \(j\)th
+      feasible direction with with step \(d_{N_j} = 1\):
+      \begin{align*}
+        \delta & = c^\top \begin{bmatrix} d_B \\ d_N \end{bmatrix}\\
+               & = c^\top_B d_B + c_{N_j} \\
+               & = c_{N_j} - c^\top_B A_B^{-1} A_{N_j} d_{N_j}
+      \end{align*}
+    \end{enumerate}
+    If all possible feasible direction leads to an increase in the
+    objective value, we can say that current BFS is optimal
+  \end{field}
+\end{note}
+%
+\begin{note}
+  \xfield{State and prove the relationship between reduced costs and
+    optimality of basic feasible solution}
+  \begin{field}
+    Consider a basic feasible solution \(x\) associated with a basis
+    matrix \(B\), and let \(\bar{c}\) be the corresponding vector of
+    reduced costs.
+    \begin{enumerate}
+    \item If \(\bar{c} \succeq 0\), then \(x\) is optimal.
+    \item If \(x\) is optimal and nondegernate, then \(\bar{c}
+      \succeq 0\).
+    \end{enumerate}
+  \end{field}
+\end{note}
+%
+\begin{note}
+  \xfield{Describe the primal simplex method}
+  \begin{field}
+    Simplex method searches for an optimal solution by moving from one
+    basic feasible solution to another, along the edges of the
+    feasible set, always in a cost reducing direction.
+  \end{field}
+\end{note}
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
